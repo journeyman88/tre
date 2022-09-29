@@ -62,6 +62,8 @@ set(agrep_src src/agrep.c)
 configure_file(lib/tre-config.h.in include/tre-config.h)
 configure_file(config.h.in include/config.h)
 
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
+
 add_library(libtre_obj OBJECT ${libtre_src})
 if(TRE_APPROX)
 #    tre-match-approx.c

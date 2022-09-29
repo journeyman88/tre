@@ -67,7 +67,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
 
 add_library(libtre_obj OBJECT ${libtre_src} ${libtre_include})
 if(TRE_APPROX)
-    target_sources(libtre_obj PRIVATE tre-match-approx.c)
+    target_sources(libtre_obj PRIVATE lib/tre-match-approx.c)
 endif()
 set_property(TARGET libtre_obj PROPERTY POSITION_INDEPENDENT_CODE 1)
 target_compile_definitions(libtre_obj PRIVATE HAVE_CONFIG_H)

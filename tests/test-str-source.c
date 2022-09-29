@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "regex.h"
+#include <tre/regex.h>
 #include "tre-internal.h"
 
 /* Context structure for the tre_str_source wrappers.  */

@@ -57,19 +57,21 @@ OPTION(TRE_AGREP "Enable build and install the agrep tool" ON)
 OPTION(TRE_USE_ALLOCA "Define if you want TRE to use alloca() instead of malloc() when allocating memory needed for regexec operations." OFF)
 
 set(libtre_src lib/tre-ast.c lib/tre-compile.c lib/tre-match-backtrack.c lib/tre-match-parallel.c lib/tre-mem.c lib/tre-parse.c lib/tre-stack.c lib/regcomp.c lib/regexec.c lib/regerror.c)
+set(libtre_include lib/tre-ast.h lib/tre-compile.h lib/tre-internal.h lib/tre-match-utils.h lib/tre-mem.h lib/tre-parse.h lib/tre-stack.h lib/xmalloc.h)
 set(agrep_src src/agrep.c)
 
-configure_file(lib/tre-config.h.in include/tre-config.h)
+configure_file(include/tre/tre-config.h.in include/tre/tre-config.h)
 configure_file(config.h.in include/config.h)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
 
-add_library(libtre_obj OBJECT ${libtre_src})
+add_library(libtre_obj OBJECT ${libtre_src} ${libtre_include})
 if(TRE_APPROX)
-#    tre-match-approx.c
+    target_sources(libtre_obj PRIVATE tre-match-approx.c)
 endif()
 set_property(TARGET libtre_obj PROPERTY POSITION_INDEPENDENT_CODE 1)
 target_compile_definitions(libtre_obj PRIVATE HAVE_CONFIG_H)
+target_include_directories(libtre_obj PRIVATE include/tre)
 
 
 add_library(libtre_shared SHARED $<TARGET_OBJECTS:libtre_obj>)

@@ -84,4 +84,5 @@ add_library(libtre_static STATIC $<TARGET_OBJECTS:libtre_obj>)
 set_target_properties(libtre_static PROPERTIES OUTPUT_NAME tre)
 
 add_executable(agrep ${agrep_src})
+target_compile_definitions(agrep PRIVATE HAVE_CONFIG_H)
 target_include_directories(agrep PRIVATE include)

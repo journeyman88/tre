@@ -152,16 +152,16 @@
 #undef NDEBUG
 
 /* Name of package */
-#undef PACKAGE
+#define PACKAGE "tre"
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT ""
 
 /* Define to the full name of this package. */
-#undef PACKAGE_NAME
+#define PACKAGE_NAME "tre"
 
 /* Define to the full name and version of this package. */
-#undef PACKAGE_STRING
+#define PACKAGE_STRING "tre-0.8.0"
 
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
@@ -196,7 +196,7 @@
 
 /* Define to a field in the regex_t struct where TRE should store a pointer to
    the internal tre_tnfa_t structure */
-#undef TRE_REGEX_T_FIELD
+#define TRE_REGEX_T_FIELD value
 
 /* Define to the absolute path to the system regex.h */
 #undef TRE_SYSTEM_REGEX_H_PATH

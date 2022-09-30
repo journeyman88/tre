@@ -9,7 +9,7 @@
 #ifndef TRE_H
 #define TRE_H 1
 
-#include "tre-config.h"
+#include <tre/tre-config.h>
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>

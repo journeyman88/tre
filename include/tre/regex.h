@@ -13,7 +13,7 @@
 #ifndef TRE_REXEX_H
 #define TRE_REGEX_H 1
 
-#include "tre.h"
+#include <tre/tre.h>
 
 #ifndef TRE_USE_SYSTEM_REGEX_H
 #define regcomp	   tre_regcomp

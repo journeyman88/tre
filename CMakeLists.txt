@@ -65,9 +65,7 @@ set(libtre_include lib/tre-ast.h lib/tre-compile.h lib/tre-internal.h lib/tre-ma
 set(agrep_src src/agrep.c)
 
 configure_file(include/tre/tre-config.h.in include/tre/tre-config.h)
-configure_file(config.h.in include/config.h)
-
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
+configure_file(config.h.in config/config.h)
 
 add_library(libtre_obj OBJECT ${libtre_src} ${libtre_include})
 if(TRE_APPROX)
@@ -75,7 +73,9 @@ if(TRE_APPROX)
 endif()
 set_property(TARGET libtre_obj PROPERTY POSITION_INDEPENDENT_CODE 1)
 target_compile_definitions(libtre_obj PRIVATE HAVE_CONFIG_H)
+target_include_directories(libtre_obj PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/config)
 target_include_directories(libtre_obj PRIVATE include/tre)
+target_include_directories(libtre_obj PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/include)
 
 
 add_library(libtre_shared SHARED $<TARGET_OBJECTS:libtre_obj>)
@@ -85,6 +85,8 @@ set_target_properties(libtre_static PROPERTIES OUTPUT_NAME tre)
 
 add_executable(agrep ${agrep_src})
 target_compile_definitions(agrep PRIVATE HAVE_CONFIG_H)
+target_include_directories(agrep PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/config)
 target_include_directories(agrep PRIVATE include)
+target_include_directories(agrep PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/include)
 target_compile_definitions(agrep PRIVATE LOCALEDIR ${CMAKE_INSTALL_FULL_LOCALEDIR})
 target_link_libraries(agrep libtre_static)
